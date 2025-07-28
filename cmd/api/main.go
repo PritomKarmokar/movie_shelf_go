@@ -12,6 +12,7 @@ import (
 func main() {
 
 	config.LoadEnv()
+	config.LoggerConfig()
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/hello", hello)
@@ -24,7 +25,7 @@ func main() {
 		ReadTimeout:  viper.GetDuration("SERVER_READ_TIMEOUT"),
 		WriteTimeout: viper.GetDuration("SERVER_WRITE_TIMEOUT"),
 	}
-	
+
 	log.Info().Msgf("Starting server on port %d", port)
 	err := srv.ListenAndServe()
 	if err != nil {
