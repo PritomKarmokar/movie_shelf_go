@@ -1,8 +1,8 @@
 package config
 
 import (
+	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
-	"log"
 )
 
 func LoadEnv() {
@@ -12,8 +12,8 @@ func LoadEnv() {
 
 	if err := viper.ReadInConfig(); err != nil {
 		viper.AutomaticEnv()
-		log.Println("ENV loaded from AutomaticEnv()")
+		log.Info().Msg("ENV loaded from AutomaticEnv()")
 	} else {
-		log.Println("ENV loaded from .env")
+		log.Info().Msg("ENV loaded from .env")
 	}
 }
